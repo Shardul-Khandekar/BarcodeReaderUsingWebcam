@@ -3,6 +3,7 @@ import cv2
 from pyzbar import pyzbar
 
 def read_barcodes(frame):
+    #pyzbar will decode the image which is captured using webcam feed
     barcodes = pyzbar.decode(frame)
     for barcode in barcodes:
         x, y , w, h = barcode.rect
@@ -12,6 +13,8 @@ def read_barcodes(frame):
     return frame
 
 def main():
+    # 0 indicates that webcam associated with device
+    # 1,2 can be used for external webcam
     camera = cv2.VideoCapture(0)
     ret, frame = camera.read()
     while ret:
